@@ -12,7 +12,7 @@ export default {
         primaryDark: "#3a3b3c",
       },
       backgroundImage: {
-        "img-background": "url('/src/assets/img/background.jpg')",
+        "img-background": "url('/src/assets/img/background2.jpg')",
       },
     },
   },
