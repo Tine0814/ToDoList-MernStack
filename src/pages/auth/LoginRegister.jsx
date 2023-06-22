@@ -30,7 +30,7 @@ const LoginRegister = () => {
           <form className="h-full">
             <div className="h-full flex justify-center items-center">
               <div className="w-[400px] flex flex-col gap-5">
-                <h1 className="text-center bg-gradient-to-r  from-sky-500 to-indigo-500 bg-clip-text text-transparent font-bold text-[30px]">
+                <h1 className="text-center bg-gradient-to-r  from-[#d946ef] to-[#8b5cf6] bg-clip-text text-transparent font-bold text-[30px]">
                   Your Information
                 </h1>
                 <InputComponent label="UserName" />
@@ -55,7 +55,7 @@ const LoginRegister = () => {
                   </label>
                 </div>
                 <div className="flex justify-center">
-                  <button className="w-[150px] bg-gradient-to-r  from-sky-500 to-indigo-500 px-5 py-2 rounded-full font-bold shadow-md hover:ease-in-out duration-300 hover:scale-125">
+                  <button className="w-[150px] bg-gradient-to-r  from-[#d946ef] to-[#8b5cf6] px-5 py-2 rounded-full font-bold shadow-md hover:ease-in-out duration-300 hover:scale-125">
                     <div className="text-white">Sign In</div>
                   </button>
                 </div>
@@ -102,28 +102,48 @@ const LoginRegister = () => {
             </div>
           </form>
           <motion.div
-            animate={!change ? { left: 0 } : {}}
+            animate={
+              !change
+                ? {
+                    right: 0,
+                    background: [
+                      "linear-gradient(to right, #d946ef,#8b5cf6)",
+                      "linear-gradient(to right, #6366f1, #0ea5e9)",
+                    ],
+                  }
+                : { left: 0 }
+            }
+            initial={{ right: 0 }}
             transition={{ duration: 0.5 }}
-            className={` z-20 absolute top-0 right-0 bg-gradient-to-r from-sky-500 to-indigo-500 h-[500px] w-[50%]  flex justify-center items-center flex-col gap-10 text-white`}
+            className={` z-20 absolute top-0 h-[500px] w-[50%]  flex justify-center items-center flex-col gap-10 text-white`}
           >
-            <h1 className="text-[25px] font-bold">Register Your Account</h1>
+            <h1 className="text-[25px] font-bold">
+              {" "}
+              {!change
+                ? " Register Your Information"
+                : "You Already have an Account"}
+            </h1>
             <div className="w-[250px]">
               <Lottie animationData={animation} />
             </div>
             <button
               className="w-[150px] bg-white px-5 py-2 rounded-full font-bold shadow-md hover:ease-in-out duration-300 hover:scale-125"
-              onClick={() => setChange(true)}
+              onClick={() => {
+                if (!change) {
+                  setChange(true);
+                } else {
+                  setChange(false);
+                }
+              }}
             >
-              <div className="bg-gradient-to-r  from-sky-500 to-indigo-500 bg-clip-text text-transparent">
-                Sign In
-              </div>
-            </button>
-            <button
-              className="w-[150px] bg-white px-5 py-2 rounded-full font-bold shadow-md hover:ease-in-out duration-300 hover:scale-125"
-              onClick={() => setChange(false)}
-            >
-              <div className="bg-gradient-to-r  from-sky-500 to-indigo-500 bg-clip-text text-transparent">
-                Sign In
+              <div
+                className={`${
+                  change
+                    ? "from-[#d946ef] to-[#8b5cf6]"
+                    : "from-sky-500 to-indigo-500"
+                } bg-gradient-to-r bg-clip-text text-transparent`}
+              >
+                {!change ? " Register" : "Sign In"}
               </div>
             </button>
           </motion.div>
