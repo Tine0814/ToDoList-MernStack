@@ -11,6 +11,9 @@ export default {
         dark: "#18191a",
         primaryDark: "#3a3b3c",
       },
+      backgroundImage: {
+        "img-background": "url('/src/assets/img/background.jpg')",
+      },
     },
   },
   plugins: [],
