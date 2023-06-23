@@ -45,7 +45,7 @@ const LoginRegister = () => {
                 />
                 <div className="flex items-center mb-4">
                   <input
-                    id="default-checkbox"
+                    id="login-checkbox"
                     type="checkbox"
                     value={showPassword}
                     checked={showPassword}
@@ -84,7 +84,7 @@ const LoginRegister = () => {
                 />
                 <div className="flex items-center mb-4">
                   <input
-                    id="default-checkbox"
+                    id="register-checkbox"
                     type="checkbox"
                     value={showPassword}
                     checked={showPassword}
