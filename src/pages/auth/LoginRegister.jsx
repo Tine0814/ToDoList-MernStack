@@ -8,21 +8,23 @@ import background from "../../assets/img/background2.jpg";
 const LoginRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [change, setChange] = useState(null);
-
-  useEffect(() => {
-    const storedChange = localStorage.getItem("change");
-    if (storedChange !== null) {
-      setChange(JSON.parse(storedChange));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("change", JSON.stringify(change));
-  }, [change]);
+  const [pageTitle, setPageTitle] = useState("");
 
   const handleCheckboxChange = (event) => {
     setShowPassword(event.target.checked);
   };
+
+  useEffect(() => {
+    const newTitle = change ? "Register" : "Login";
+    setPageTitle(newTitle);
+  }, [change]);
+
+  useEffect(() => {
+    document.title = pageTitle; // Set the title when the component mounts
+    return () => {
+      document.title = "Default Title"; // Reset the title when the component unmounts
+    };
+  }, [pageTitle]);
 
   return (
     <>
