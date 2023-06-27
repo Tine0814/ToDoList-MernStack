@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 // import student from "../.../../../assets/images/student.png";
 // import studying from "../.../../../assets/images/studying.png";
@@ -10,6 +10,22 @@ import useToggle from "../../hooks/useToggle";
 
 const ToDoList = () => {
   const { value, toggleValue } = useToggle(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/api/to-do-list/");
+        const jsonData = await response.json();
+
+        setData(jsonData);
+        console.log(jsonData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="">
@@ -19,10 +35,7 @@ const ToDoList = () => {
             <GiHamburgerMenu />
           </button>
         </div>
-        <Avatar
-          alt="Remy Sharp"
-          src="https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-1/324515370_481519254175589_8345319308494005072_n.jpg?stp=dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=7206a8&_nc_eui2=AeF7p-8opA6xI84Sfvs2NOrYvbgb4VLdNaG9uBvhUt01ob9htF3JJfDmFnFPgJhEn6fap3T3OxB-bti84EX76VCm&_nc_ohc=ZcTzRzYKn7IAX9SOn14&_nc_ht=scontent.fcrk1-3.fna&oh=00_AfAwwCy37ZcD8ZcZKiwLZvUmX7VMVLCWzNM5eigg0PhtGA&oe=6469F3B0"
-        />
+        <Avatar alt="Remy Sharp" src="" />
       </header>
       {value && (
         <AnimatePresence>
