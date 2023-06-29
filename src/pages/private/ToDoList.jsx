@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-// import student from "../.../../../assets/images/student.png";
-// import studying from "../.../../../assets/images/studying.png";
-// import analysis from "../.../../../assets/images/analysis.png";
-// import knowledge from "../.../../../assets/images/knowledge.png";
 import { AnimatePresence, motion } from "framer-motion";
 import { Avatar } from "@mui/material";
 import useToggle from "../../hooks/useToggle";
+import Form from "../../components/toDoListPage/content/Form";
 
 const ToDoList = () => {
   const { value, toggleValue } = useToggle(false);
   const [data, setData] = useState([]);
+  const [form, setForm] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +17,6 @@ const ToDoList = () => {
         const jsonData = await response.json();
 
         setData(jsonData);
-        console.log(jsonData);
       } catch (error) {
         console.log(error);
       }
@@ -27,8 +24,21 @@ const ToDoList = () => {
     fetchData();
   }, []);
 
+  const showForm = () => {
+    if (form) {
+      document.body.style.overflow = "hidden";
+      return (
+        <>
+          <Form onClick={() => setForm(false)} />
+        </>
+      );
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  };
   return (
     <div className="">
+      {showForm()}
       <header className="relative w-full flex justify-between px-5 py-2 items-center shadow-xl">
         <div className="text-[20px]">
           <button onClick={() => toggleValue(!value)}>
@@ -150,9 +160,19 @@ const ToDoList = () => {
             </div>
           </div>
           <div>
-            <h1 className="text-[30px] font-semibold text-transparent bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text">
-              Category
-            </h1>
+            <div className="flex gap-10">
+              <h1 className="text-[30px] font-semibold text-transparent bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text">
+                Tasks
+              </h1>
+              <div>
+                <button
+                  onClick={() => setForm(true)}
+                  className="w-[150px] bg-gradient-to-r  from-sky-500 to-indigo-500 px-5 py-2 rounded-full font-bold shadow-md hover:ease-in-out duration-300 hover:scale-125"
+                >
+                  <div className="text-white">Add Task</div>
+                </button>
+              </div>
+            </div>
             <div className="grid grid-cols-3 gap-5 mt-5">
               <div className="w-[320px] bg-red-200 h-[150px] rounded-xl shadow-lg">
                 <div>
