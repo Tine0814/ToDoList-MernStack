@@ -174,24 +174,17 @@ const ToDoList = () => {
               </div>
             </div>
             <div className="grid grid-cols-3 gap-5 mt-5">
-              <div className="w-[320px] bg-red-200 h-[150px] rounded-xl shadow-lg">
-                <div>
-                  <div>icon</div>
-                  <div></div>
+              {data.map((newData) => (
+                <div
+                  key={newData._id}
+                  className="w-[320px] bg-red-200 h-[150px] rounded-xl shadow-lg"
+                >
+                  <div>
+                    <div>{newData.title}</div>
+                    <div></div>
+                  </div>
                 </div>
-              </div>
-              <div className="w-[320px] bg-red-200 h-[150px] rounded-xl shadow-lg">
-                <div>
-                  <div>icon</div>
-                  <div></div>
-                </div>
-              </div>
-              <div className="w-[320px] bg-red-200 h-[150px] rounded-xl shadow-lg">
-                <div>
-                  <div>icon</div>
-                  <div></div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

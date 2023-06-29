@@ -6,6 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const schema = z.object({
   title: z.string().min(4, "title min 4 char"),
@@ -14,6 +15,7 @@ const schema = z.object({
 });
 
 const Form = ({ onClick }) => {
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -36,6 +38,7 @@ const Form = ({ onClick }) => {
       if (response.ok) {
         const data = await response.json();
         console.log(data); // Handle the response data
+        window.location.reload();
       } else {
         throw new Error("Failed to fetch data");
       }
