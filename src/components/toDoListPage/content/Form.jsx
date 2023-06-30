@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 const schema = z.object({
   title: z.string().min(4, "title min 4 char"),
   task: z.string().min(4, "title min 4 char"),
-  category: z.string().min(4, "title min 4 char"),
+  description: z.string().min(4, "title min 4 char"),
+  date: z.string(),
 });
 
 const Form = ({ onClick }) => {
@@ -72,6 +73,7 @@ const Form = ({ onClick }) => {
             error={errors?.title}
             register={register}
           />
+
           <InputComponent
             label="Task"
             name="task"
@@ -80,10 +82,21 @@ const Form = ({ onClick }) => {
           />
           <TextAreaComponent
             placeholder="Description"
-            name="category"
+            name="description"
             register={register}
             error={errors?.register}
           />
+          <div className="flex flex-col text-start gap-3">
+            <label htmlFor="date" className=" font-semibold">
+              Date
+            </label>
+            <InputComponent
+              name="date"
+              error={errors?.date}
+              register={register}
+              type="date"
+            />
+          </div>
           <div className="flex justify-center">
             <button
               type="submit"

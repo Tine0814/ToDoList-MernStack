@@ -29,10 +29,9 @@ const LoginRegister = () => {
   return (
     <>
       <div className="relative w-full h-screen flex justify-center items-center p-10 bg-img-background bg-no-repeat bg-cover">
-        <div className=" w-full h-full top-0 object-fit absolute  opacity-[.4]">
+        {/* <div className=" w-full h-full top-0 object-fit absolute">
           <img src={background} alt="" className="w-full h-full object-fit " />
-        </div>
-        <div className="absolute top-0 w-full h-full bg-[#446dc1] mix-blend-overlay "></div>
+        </div> */}
         <div className="relative h-[500px] bg-[#ededed] w-[1000px] shadow-lg rounded-md overflow-hidden p-10 flex justify-between">
           <form className="h-full">
             <div className="h-full flex justify-center items-center">
