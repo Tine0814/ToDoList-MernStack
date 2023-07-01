@@ -163,7 +163,6 @@ const ToDoList = () => {
                           </h1>
                           <h1>{newData.task}</h1>
                           <h1>{newData.date}</h1>
-                          {console.log(newData.done)}
                         </div>
                         <div className="absolute right-2 bottom-2">
                           <button>

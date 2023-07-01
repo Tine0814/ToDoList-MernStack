@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import TextAreaComponent from "../../form/textField/TextAreaComponent";
 import InputComponent from "../../form/textField/inputComponent";
@@ -12,7 +12,7 @@ const schema = z.object({
   title: z.string().min(4, "title min 4 char"),
   task: z.string().min(4, "title min 4 char"),
   description: z.string().min(4, "title min 4 char"),
-  date: z.string(),
+  date: z.string().min(1, "date are needed"),
 });
 
 const Form = ({ onClick }) => {
@@ -38,8 +38,9 @@ const Form = ({ onClick }) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data); // Handle the response data
-        window.location.reload();
+        // console.log(data); // Handle the response data
+        // window.location.reload();
+        console.log(data);
       } else {
         throw new Error("Failed to fetch data");
       }
@@ -47,13 +48,15 @@ const Form = ({ onClick }) => {
       console.log(error); // Handle the error
     }
   };
+
+  //
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <motion.div
         className="relative min-w-[30vw] min-h-[60vh] flex flex-col items-center bg-[#FFFFEB] rounded-lg "
-        animate={{ scale: [0, 1.5, 1] }}
+        animate={{ scale: [0, 1] }}
         transition={{
-          duration: 1.4,
+          duration: 0.5,
           ease: "easeInOut",
         }}
       >
