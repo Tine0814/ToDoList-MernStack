@@ -6,6 +6,7 @@ import Task from "../../../assets/lottie/task.json";
 import Form from "./Form";
 import { useListsContext } from "../../../hooks/useListsContext";
 import ListsContent from "./ListsContent";
+import noTask from "../../../assets/lottie/noLists.json";
 
 const MainContent = () => {
   const { lists, dispatch } = useListsContext();
@@ -58,7 +59,17 @@ const MainContent = () => {
             Tasks
           </h1>
           <div className="flex lg:flex-wrap lg:flex-row last-child sm:flex-col sm:h-full justify-center gap-5 pt-10 lg:h-[500px] overflow-auto">
-            {lists &&
+            {lists && lists.length === 0 ? (
+              <div className="flex justify-center w-full overflow-hidden">
+                <div className="w-[400px]">
+                  <Lottie animationData={noTask} />
+                  <h1 className="text-center mt-5 text-[30px] font-semibold text-transparent bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text">
+                    No List of Data
+                  </h1>
+                </div>
+              </div>
+            ) : (
+              lists &&
               lists.map((newData) => {
                 if (!newData.done) {
                   return (
@@ -67,7 +78,9 @@ const MainContent = () => {
                     </div>
                   );
                 }
-              })}
+                return null; // Add this line to handle the case when newData.done is true
+              })
+            )}
           </div>
         </div>
       </div>

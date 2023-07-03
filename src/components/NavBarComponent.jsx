@@ -15,7 +15,10 @@ const NavBarComponent = () => {
             <GiHamburgerMenu />
           </button>
         </div>
-        <Avatar alt="Remy Sharp" src="" />
+        <div className="flex gap-2">
+          <h1 className="py-2 font-semibold">Dastine Jhay Bernardo</h1>
+          <Avatar alt="Remy Sharp" src="" />
+        </div>
       </header>
       {value && (
         <AnimatePresence>

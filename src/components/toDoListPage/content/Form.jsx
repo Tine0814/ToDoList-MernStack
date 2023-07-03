@@ -21,6 +21,7 @@ const Form = ({ onClick }) => {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
@@ -43,6 +44,7 @@ const Form = ({ onClick }) => {
         // window.location.reload();
         console.log(json);
         dispatch({ type: "CREATE_LISTS", payload: json });
+        reset();
       } else {
         throw new Error("Failed to fetch data");
       }
