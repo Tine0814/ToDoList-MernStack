@@ -1,9 +1,74 @@
 import React from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { AnimatePresence, delay, motion } from "framer-motion";
+import { Avatar } from "@mui/material";
+import useToggle from "../hooks/useToggle";
 
 const NavBarComponent = () => {
+  const { value, toggleValue } = useToggle(false);
+
   return (
-    <div>
-      <div>navBar</div>
+    <div className="fixed w-full z-20 bg-white">
+      <header className="relative w-full flex justify-between px-5 py-2 items-center shadow-xl">
+        <div className="text-[20px]">
+          <button onClick={() => toggleValue(!value)}>
+            <GiHamburgerMenu />
+          </button>
+        </div>
+        <Avatar alt="Remy Sharp" src="" />
+      </header>
+      {value && (
+        <AnimatePresence>
+          <motion.div
+            className={`bg-secondary  w-[200px] absolute z-20 left-5 rounded-xl top-10 p-5`}
+            initial={{ opacity: 0, y: "-50%" }}
+            animate={{ opacity: 1, y: "0%" }}
+            exit={{ opacity: 0, y: "-50%", transition: { duration: 1 } }}
+            transition={{ type: "spring", stiffness: 100, duration: 0.75 }}
+          >
+            <motion.ul
+              className="py-2 text-sm text-gray-700 dark:text-gray-200"
+              initial={{ opacity: 0, y: "-50%" }}
+              animate={{ opacity: 1, y: "0%" }}
+              exit={{ opacity: 0, y: "-50%", transition: { duration: 1 } }}
+              transition={{ type: "spring", stiffness: 100, duration: 1 }}
+            >
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  Settings
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  Earnings
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  Sign out
+                </a>
+              </li>
+            </motion.ul>
+          </motion.div>
+        </AnimatePresence>
+      )}
     </div>
   );
 };

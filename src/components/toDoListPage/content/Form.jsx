@@ -6,7 +6,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useListsContext } from "../../../hooks/useListsContext";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 
 const schema = z.object({
   title: z.string().min(4, "title min 4 char"),
@@ -16,7 +17,7 @@ const schema = z.object({
 });
 
 const Form = ({ onClick }) => {
-  const navigate = useNavigate();
+  const { dispatch } = useListsContext();
   const {
     handleSubmit,
     register,
@@ -37,10 +38,11 @@ const Form = ({ onClick }) => {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        // console.log(data); // Handle the response data
+        const json = await response.json();
+        // console.log(json); // Handle the response json
         // window.location.reload();
-        console.log(data);
+        console.log(json);
+        dispatch({ type: "CREATE_LISTS", payload: json });
       } else {
         throw new Error("Failed to fetch data");
       }
@@ -51,17 +53,17 @@ const Form = ({ onClick }) => {
 
   //
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div>
       <motion.div
-        className="relative min-w-[30vw] min-h-[60vh] flex flex-col items-center bg-[#FFFFEB] rounded-lg "
+        className="-mt-10 relative flex flex-col items-center bg-white "
         animate={{ scale: [0, 1] }}
         transition={{
           duration: 0.5,
           ease: "easeInOut",
+          delay: 0.6,
         }}
       >
-        <div className="w-full h-[25vh] bg-gradient-to-r from-purple-500 to-pink-500 rounded-t-lg"></div>
-        <div className="absolute right-1 top-1">
+        <div className="absolute right-2 top-1">
           <button onClick={onClick}>
             <CloseIcon />
           </button>
@@ -101,12 +103,18 @@ const Form = ({ onClick }) => {
             />
           </div>
           <div className="flex justify-center">
-            <button
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
               type="submit"
               className="w-[150px] bg-gradient-to-r  from-sky-500 to-indigo-500 px-5 py-2 rounded-full font-bold shadow-md hover:ease-in-out duration-300 hover:scale-125"
             >
-              <div className="text-white">Add Task</div>
-            </button>
+              <div className="text-white flex gap-2">
+                <AddBoxIcon />
+                Add Task
+              </div>
+            </motion.button>
           </div>
         </form>
       </motion.div>
