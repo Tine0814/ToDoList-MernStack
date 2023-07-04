@@ -59,7 +59,7 @@ const MainContent = () => {
             Tasks
           </h1>
           <div className="flex lg:flex-wrap lg:flex-row last-child sm:flex-col sm:h-full justify-center gap-5 pt-10 lg:h-[500px] overflow-auto">
-            {lists && lists.length === 0 ? (
+            {(lists && lists.length === 0) || lists === null ? (
               <div className="flex justify-center w-full overflow-hidden">
                 <div className="w-[400px]">
                   <Lottie animationData={noTask} />
