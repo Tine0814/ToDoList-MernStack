@@ -24,6 +24,7 @@ function InputComponent(props) {
       error={!!error}
       helperText={error?.message}
       className={`w-full`}
+      color="secondary"
     />
   );
 }

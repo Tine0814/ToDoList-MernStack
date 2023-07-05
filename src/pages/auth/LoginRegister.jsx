@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Lottie from "lottie-react";
-import animation from "../../assets/lottie/ddd.json";
+import animation from "../../assets/lottie/hand.json";
 import InputComponent from "../../components/form/textField/inputComponent";
 import { motion } from "framer-motion";
-import background from "../../assets/img/background2.jpg";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { Link } from "react-router-dom";
 
 const LoginRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [change, setChange] = useState(null);
   const [pageTitle, setPageTitle] = useState("");
-
-  const handleCheckboxChange = (event) => {
-    setShowPassword(event.target.checked);
-  };
 
   useEffect(() => {
     const newTitle = change ? "Register" : "Login";
@@ -28,131 +26,66 @@ const LoginRegister = () => {
 
   return (
     <>
-      <div className="relative w-full h-screen flex justify-center items-center p-10 bg-img-background bg-no-repeat bg-cover">
-        {/* <div className=" w-full h-full top-0 object-fit absolute">
-          <img src={background} alt="" className="w-full h-full object-fit " />
-        </div> */}
-        <div className="relative h-[500px] bg-[#ededed] w-[1000px] shadow-lg rounded-md overflow-hidden p-10 flex justify-between">
-          <form className="h-full">
-            <div className="h-full flex justify-center items-center">
-              <div className="w-[400px] flex flex-col gap-5">
-                <h1 className="text-center bg-gradient-to-r  from-[#d946ef] to-[#8b5cf6] bg-clip-text text-transparent font-bold text-[30px]">
-                  Your Information
-                </h1>
-                <InputComponent label="UserName" />
-                <InputComponent
-                  label="Password"
-                  type={showPassword ? "text" : "password"}
-                />
-                <div className="flex items-center mb-4">
-                  <input
-                    id="login-checkbox"
-                    type="checkbox"
-                    value={showPassword}
-                    checked={showPassword}
-                    onChange={handleCheckboxChange}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    htmlFor="default-checkbox"
-                    className="ml-2 text-sm font-medium text-gray-900"
-                  >
-                    Show Password
-                  </label>
+      <div className="relative h-screen">
+        <div className="h-full left-color flex justify-center items-center p-10">
+          <div className="md:costume-box-shadow bluring w-[800px] flex md:flex-row flex-col">
+            <div className="lg:w-[33%] w-full">
+              <div className="w-full h-full flex justify-center p-5 items-center flex-col text-center text-white">
+                <h1 className="text-[25px] font-bold ">Welcome to Login</h1>
+                <h2 className="text-[15px] mb-10">Don't have an account?</h2>
+                <button className="bg-white py-3 px-5 w-[200px] font-bold shadow-lg rounded-md">
+                  <div className="bg-gradient-to-r from-[#eebd89] to-[#d13abd] text-transparent bg-clip-text">
+                    Signup
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div className="relative flex-grow flex justify-center">
+              <div className="absolute right-3">
+                <div className="hidden md:flex">
+                  <div className="w-[60px]">
+                    <Lottie animationData={animation} />
+                  </div>
+                  <h1 className="py-5 text-[15px] font-semibold ">Hello!!</h1>
                 </div>
-                <div className="flex justify-center">
-                  <button className="w-[150px] bg-gradient-to-r  from-[#d946ef] to-[#8b5cf6] px-5 py-2 rounded-full font-bold shadow-md hover:ease-in-out duration-300 hover:scale-125">
-                    <div className="text-white">Sign In</div>
+              </div>
+              <form action="">
+                <div className="flex md:w-[500px] sm:h-[400px] md:h-[500px] flex-col justify-center items-center p-10 gap-5">
+                  <h1 className="text-[15px] font-bold">Log in</h1>
+                  <div className="w-full">
+                    <InputComponent label="Email" />
+                  </div>
+                  <div className="w-full relative">
+                    <InputComponent
+                      label="Password"
+                      type={!showPassword ? "password" : "text"}
+                    />
+                    {!showPassword ? (
+                      <div
+                        onClick={() => setShowPassword(true)}
+                        className="absolute top-[50%] translate-y-[-50%] right-2 cursor-pointer"
+                      >
+                        <RemoveRedEyeIcon />
+                      </div>
+                    ) : (
+                      <div
+                        onClick={() => setShowPassword(false)}
+                        className="absolute top-[50%] translate-y-[-50%] right-2 cursor-pointer"
+                      >
+                        <VisibilityOffIcon />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex justify-end w-full">
+                    <Link to="todo">Forgot Password?</Link>
+                  </div>
+                  <button className="bg-gradient-to-r from-[#eebd89] to-[#d13abd] py-3 px-5 w-full text-white shadow-lg rounded-md">
+                    Login
                   </button>
                 </div>
-              </div>
+              </form>
             </div>
-          </form>
-          <form className="h-full">
-            <div className="h-full flex justify-center items-center">
-              <div className="w-[400px] flex flex-col gap-5">
-                <h1 className="text-center bg-gradient-to-r  from-sky-500 to-indigo-500 bg-clip-text text-transparent font-bold text-[30px]">
-                  Your Information
-                </h1>
-                <InputComponent label="UserName" />
-                <InputComponent
-                  label="Password"
-                  type={showPassword ? "text" : "password"}
-                />
-                <InputComponent
-                  label="Confirm Passowrd"
-                  type={showPassword ? "text" : "password"}
-                />
-                <div className="flex items-center mb-4">
-                  <input
-                    id="register-checkbox"
-                    type="checkbox"
-                    value={showPassword}
-                    checked={showPassword}
-                    onChange={handleCheckboxChange}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    htmlFor="default-checkbox"
-                    className="ml-2 text-sm font-medium text-gray-900"
-                  >
-                    Show Password
-                  </label>
-                </div>
-                <div className="flex justify-center">
-                  <button className="w-[150px] bg-gradient-to-r  from-sky-500 to-indigo-500 px-5 py-2 rounded-full font-bold shadow-md hover:ease-in-out duration-300 hover:scale-125">
-                    <div className="text-white">Register</div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
-          <motion.div
-            animate={
-              !change
-                ? {
-                    right: 0,
-                    background: [
-                      "linear-gradient(to right, #d946ef,#8b5cf6)",
-                      "linear-gradient(to right, #6366f1, #0ea5e9)",
-                    ],
-                  }
-                : { left: 0 }
-            }
-            initial={{ right: 0 }}
-            transition={{ duration: 0.5 }}
-            className={` z-20 absolute top-0 h-[500px] w-[50%]  flex justify-center items-center flex-col gap-10 text-white`}
-          >
-            <h1 className="text-[25px] font-bold">
-              {" "}
-              {!change
-                ? " Register Your Information"
-                : "You Already have an Account"}
-            </h1>
-            <div className="w-[250px]">
-              <Lottie animationData={animation} />
-            </div>
-            <button
-              className="w-[150px] bg-white px-5 py-2 rounded-full font-bold shadow-md hover:ease-in-out duration-300 hover:scale-125"
-              onClick={() => {
-                if (!change) {
-                  setChange(true);
-                } else {
-                  setChange(false);
-                }
-              }}
-            >
-              <div
-                className={`${
-                  change
-                    ? "from-[#d946ef] to-[#8b5cf6]"
-                    : "from-sky-500 to-indigo-500"
-                } bg-gradient-to-r bg-clip-text text-transparent`}
-              >
-                {!change ? " Register" : "Sign In"}
-              </div>
-            </button>
-          </motion.div>
+          </div>
         </div>
       </div>
     </>

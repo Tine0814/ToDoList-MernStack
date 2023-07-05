@@ -9,7 +9,7 @@ const TextAreaComponent = (props) => {
   }
   return (
     <Textarea
-      color="primary"
+      color="info"
       minRows={2}
       placeholder={placeholder}
       {...registerProps}

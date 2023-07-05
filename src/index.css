@@ -55,3 +55,48 @@
   display: flex;
   justify-content: flex-start;
 }
+
+.left-color {
+  position: relative;
+}
+
+.left-color::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%; /* Adjust this value to control the width of the colored section */
+  background-image: linear-gradient(
+    to right,
+    #eebd89,
+    #d13abd
+  ); /* Adjust this value to change the color */
+  z-index: -1;
+}
+.costume-box-shadow {
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+.bluring {
+  background: rgb(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+}
+
+@media screen and (max-width: 1024px) {
+  .left-color::before {
+    width: 37%;
+  }
+}
+@media screen and (max-width: 897px) {
+  .left-color::before {
+    width: 35%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .left-color::before {
+    width: 100%;
+    height: 40%;
+  }
+}
