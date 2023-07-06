@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useListsContext } from "../../../hooks/useListsContext";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import { useUserContext } from "../../../hooks/useUserContext";
 
 const schema = z.object({
   title: z.string().min(4, "title min 4 char"),
@@ -18,6 +19,7 @@ const schema = z.object({
 
 const Form = ({ onClick }) => {
   const { dispatch } = useListsContext();
+  const { user } = useUserContext();
   const {
     handleSubmit,
     register,
@@ -28,12 +30,16 @@ const Form = ({ onClick }) => {
   });
 
   const onSubmit = async (value) => {
-    console.log(value);
+    if (!user) {
+      console.log("need to be login");
+      return;
+    }
     try {
       const response = await fetch("http://localhost:4000/api/to-do-list/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
         },
         body: JSON.stringify(value),
       });

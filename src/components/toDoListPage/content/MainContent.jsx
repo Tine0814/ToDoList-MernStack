@@ -7,15 +7,21 @@ import Form from "./Form";
 import { useListsContext } from "../../../hooks/useListsContext";
 import ListsContent from "./ListsContent";
 import noTask from "../../../assets/lottie/noLists.json";
+import { useUserContext } from "../../../hooks/useUserContext";
 
 const MainContent = () => {
   const { lists, dispatch } = useListsContext();
   const [form, setForm] = useState(false);
+  const { user } = useUserContext();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:4000/api/to-do-list/");
+        const response = await fetch("http://localhost:4000/api/to-do-list/", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
         const jsonData = await response.json();
 
         if (response.ok) {
@@ -25,8 +31,10 @@ const MainContent = () => {
         console.log(error);
       }
     };
-    fetchData();
-  }, []);
+    if (user) {
+      fetchData();
+    }
+  }, [dispatch, user]);
 
   const showForm = () => {
     if (form) {
@@ -70,10 +78,10 @@ const MainContent = () => {
               </div>
             ) : (
               lists &&
-              lists.map((newData) => {
+              lists.map((newData, index) => {
                 if (!newData.done) {
                   return (
-                    <div key={newData._id}>
+                    <div key={index}>
                       <ListsContent newData={newData} />
                     </div>
                   );

@@ -8,5 +8,5 @@ export const useUserContext = () => {
     throw Error("useUserContext must be used inside an ListContextProvider");
   }
 
-  return { lists: state.user, dispatch };
+  return { user: state.user, dispatch };
 };

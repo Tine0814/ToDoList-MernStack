@@ -4,9 +4,11 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useListsContext } from "../../../hooks/useListsContext";
+import { useUserContext } from "../../../hooks/useUserContext";
 
 const ListsContent = ({ newData }) => {
   const { dispatch } = useListsContext();
+  const { user } = useUserContext();
   const getRandomDarkColor = () => {
     const letters = "0123456789ABCDEF";
     let color = "#";
@@ -17,10 +19,16 @@ const ListsContent = ({ newData }) => {
   };
 
   const handDelete = async () => {
+    if (!user) {
+      return;
+    }
     const response = await fetch(
       "http://localhost:4000/api/to-do-list/" + newData._id,
       {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
       }
     );
     const json = await response.json();

@@ -3,9 +3,13 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { AnimatePresence, delay, motion } from "framer-motion";
 import { Avatar } from "@mui/material";
 import useToggle from "../hooks/useToggle";
+import { useLogout } from "../hooks/useLogout";
+import { useUserContext } from "../hooks/useUserContext";
 
 const NavBarComponent = () => {
   const { value, toggleValue } = useToggle(false);
+  const { logout } = useLogout();
+  const { user } = useUserContext();
 
   return (
     <div className="fixed w-full z-20 bg-white">
@@ -16,7 +20,7 @@ const NavBarComponent = () => {
           </button>
         </div>
         <div className="flex gap-2">
-          <h1 className="py-2 font-semibold">Dastine Jhay Bernardo</h1>
+          {user && <h1 className="py-2 font-semibold">{user.email}</h1>}
           <Avatar alt="Remy Sharp" src="" />
         </div>
       </header>
@@ -39,7 +43,7 @@ const NavBarComponent = () => {
               <li>
                 <a
                   href="#"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                   Dashboard
                 </a>
@@ -47,7 +51,7 @@ const NavBarComponent = () => {
               <li>
                 <a
                   href="#"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                   Settings
                 </a>
@@ -55,18 +59,18 @@ const NavBarComponent = () => {
               <li>
                 <a
                   href="#"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                   Earnings
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                <button
+                  onClick={logout}
+                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                   Sign out
-                </a>
+                </button>
               </li>
             </motion.ul>
           </motion.div>
