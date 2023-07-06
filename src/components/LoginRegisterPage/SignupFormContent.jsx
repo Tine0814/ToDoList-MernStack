@@ -34,7 +34,7 @@ const SignupFormContent = () => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex md:w-[500px] sm:h-[400px] md:h-[500px] flex-col justify-center items-center p-10 gap-5">
-          <h1 className="text-[15px] font-bold">Register</h1>
+          <h1 className="text-[15px] font-bold">Sign Up</h1>
           <div className="w-full">
             <InputComponent
               label="Email"

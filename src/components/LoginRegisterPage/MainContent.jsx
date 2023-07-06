@@ -6,10 +6,12 @@ import LoadingComponent from "../loading/LoadingComponent";
 import SignupFormContent from "./SignupFormContent";
 
 const MainContent = () => {
-  const [change, setChange] = useState(null);
-  const [pageTitle, setPageTitle] = useState("");
   const [form, setForm] = useState(true);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    document.title = form ? "Login" : "Signup";
+  }, [form]);
 
   const handleLoading = () => {
     setLoading(true);
@@ -37,7 +39,7 @@ const MainContent = () => {
                   className="bg-white py-3 px-5 w-[200px] font-bold shadow-lg rounded-md"
                 >
                   <div className="bg-gradient-to-r from-[#eebd89] to-[#d13abd] text-transparent bg-clip-text">
-                    {form ? "Register" : "Login"}
+                    {form ? "Signup" : "Login"}
                   </div>
                 </button>
               </div>

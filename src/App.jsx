@@ -16,10 +16,10 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={!user ? <LoginRegister /> : <Navigate to="toDo" />}
+            element={!user ? <LoginRegister /> : <Navigate to="Task" />}
           />
           <Route
-            path="toDo"
+            path="Task"
             element={user ? <ToDoList /> : <Navigate to="/" />}
           />
         </Routes>
