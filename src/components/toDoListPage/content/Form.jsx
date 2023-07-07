@@ -35,14 +35,17 @@ const Form = ({ onClick }) => {
       return;
     }
     try {
-      const response = await fetch("http://localhost:4000/api/to-do-list/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify(value),
-      });
+      const response = await fetch(
+        "https://to-do-list-mern-stack-backend.vercel.app/api/to-do-list/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify(value),
+        }
+      );
 
       if (response.ok) {
         const json = await response.json();

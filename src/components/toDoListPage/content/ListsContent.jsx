@@ -23,7 +23,8 @@ const ListsContent = ({ newData }) => {
       return;
     }
     const response = await fetch(
-      "http://localhost:4000/api/to-do-list/" + newData._id,
+      "https://to-do-list-mern-stack-backend.vercel.app/api/to-do-list/" +
+        newData._id,
       {
         method: "DELETE",
         headers: {
