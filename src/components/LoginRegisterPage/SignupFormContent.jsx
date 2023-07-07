@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import InputComponent from "../form/textField/inputComponent";
 import { motion } from "framer-motion";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -8,6 +7,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useSignup } from "../../hooks/useSignup";
+import InputComponent from "../form/textField/inputComponent";
 
 const schema = z.object({
   email: z.string().email(),
