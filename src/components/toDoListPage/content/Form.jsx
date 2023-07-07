@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import TextAreaComponent from "../../form/textField/TextAreaComponent";
-import InputComponent from "../../form/textField/inputComponent";
 import CloseIcon from "@mui/icons-material/Close";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useListsContext } from "../../../hooks/useListsContext";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import { useUserContext } from "../../../hooks/useUserContext";
+import InputComponent from "../../form/textField/inputComponent";
 
 const schema = z.object({
   title: z.string().min(4, "title min 4 char"),
