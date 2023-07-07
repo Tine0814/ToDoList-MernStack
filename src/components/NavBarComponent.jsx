@@ -27,7 +27,7 @@ const NavBarComponent = () => {
       {value && (
         <AnimatePresence>
           <motion.div
-            className={`bg-secondary  w-[200px] absolute z-20 left-5 rounded-xl top-10 p-5`}
+            className={`bg-gradient-to-r from-purple-500 to-pink-500 w-[200px] absolute z-20 left-5 rounded-xl top-10 p-5`}
             initial={{ opacity: 0, y: "-50%" }}
             animate={{ opacity: 1, y: "0%" }}
             exit={{ opacity: 0, y: "-50%", transition: { duration: 1 } }}
