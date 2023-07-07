@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { useListsContext } from "../../../hooks/useListsContext";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import { useUserContext } from "../../../hooks/useUserContext";
-import InputComponent from "../../form/textField/inputComponent";
+import InputComponent from "../../form/textField/InputComponent";
 
 const schema = z.object({
   title: z.string().min(4, "title min 4 char"),

@@ -7,7 +7,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useLogin } from "../../hooks/useLogin";
-import InputComponent from "../form/textField/inputComponent";
+import InputComponent from "../form/textField/InputComponent";
 
 const schema = z.object({
   email: z.string().email(),
