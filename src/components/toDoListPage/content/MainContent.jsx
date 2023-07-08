@@ -17,11 +17,14 @@ const MainContent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:4000/api/to-do-list/", {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
+        const response = await fetch(
+          "https://to-do-list-mern-stack-backend.vercel.app/api/to-do-list/",
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
         const jsonData = await response.json();
 
         if (response.ok) {
